@@ -36,7 +36,17 @@ const app = express();
 const httpServer = createServer(app);
 const io = new Server(httpServer, {
   cors: {
-    origin: [process.env.FRONTEND_URL || 'http://localhost:3000'],
+    origin: function (origin, callback) {
+      const allowedOrigins = [
+        process.env.FRONTEND_URL // This will be your Vercel URL
+      ].filter(Boolean); // Remove any undefined values
+      
+      if (!origin || allowedOrigins.includes(origin) || origin.includes('ngrok-free.app') || origin.includes('vercel.app')) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true
   }
@@ -44,9 +54,18 @@ const io = new Server(httpServer, {
 
 // CORS configuration
 const corsOptions = {
-  origin: 
-    'http://localhost:3000'
-  ,
+  origin: function (origin, callback) {
+    const allowedOrigins = [
+     
+      process.env.FRONTEND_URL // This will be your Vercel URL
+    ].filter(Boolean); // Remove any undefined values
+    
+    if (!origin || allowedOrigins.includes(origin) || origin.includes('ngrok-free.app') || origin.includes('vercel.app')) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true

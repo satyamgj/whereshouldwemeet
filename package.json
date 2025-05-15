@@ -1,28 +1,14 @@
 {
-  "name": "where-to-meet",
+  "name": "wheretomeet-root",
   "version": "1.0.0",
-  "description": "A location-based meeting app backend",
-  "main": "src/server.js",
+  "private": true,
+  "workspaces": [
+    "src/backend",
+    "frontend"
+  ],
   "scripts": {
-    "start": "node src/server.js",
-    "dev": "nodemon src/server.js"
-  },
-  "dependencies": {
-    "@googlemaps/google-maps-services-js": "^3.3.41",
-    "@react-google-maps/api": "^2.20.6",
-    "@tailwindcss/forms": "^0.5.10",
-    "cors": "^2.8.5",
-    "dotenv": "^16.3.1",
-    "express": "^4.18.2",
-    "framer-motion": "^12.11.0",
-    "mongoose": "^7.6.3",
-    "react-icons": "^5.5.0",
-    "socket.io": "^4.8.1",
-    "swagger-jsdoc": "^6.2.8",
-    "swagger-ui-express": "^5.0.1",
-    "tailwindcss": "^4.1.6"
-  },
-  "devDependencies": {
-    "nodemon": "^3.0.1"
+    "install:all": "npm install && cd src/backend && npm install --production && cd ../../frontend && npm install",
+    "start:backend": "cd src/backend && npm start",
+    "start:frontend": "cd frontend && npm start"
   }
 }
