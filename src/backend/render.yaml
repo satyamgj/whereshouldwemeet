@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: wheretomeet-backend
+    env: node
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: MONGODB_URI
+        sync: false
+      - key: GOOGLE_MAPS_API_KEY
+        sync: false
+      - key: PORT
+        value: 5001 
