@@ -1,14 +1,15 @@
 {
-  "name": "wheretomeet-root",
+  "name": "where-to-meet",
   "version": "1.0.0",
   "private": true,
   "workspaces": [
-    "src/backend",
-    "frontend"
+    "src/frontend",
+    "src/backend"
   ],
   "scripts": {
-    "install:all": "npm install && cd src/backend && npm install --production && cd ../../frontend && npm install",
+    "install:all": "npm install && cd src/frontend && npm install && cd ../backend && npm install --production",
     "start:backend": "cd src/backend && npm start",
-    "start:frontend": "cd frontend && npm start"
+    "start:frontend": "cd src/frontend && npm start",
+    "build:frontend": "cd src/frontend && npm install && npm run build"
   }
 }
